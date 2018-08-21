@@ -24,6 +24,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 import com.coe.homs.security.CustomAuthenticationProvider;
 import com.coe.homs.security.CustomRESTRedirectStrategy;
 import com.coe.homs.security.CustomTokenAuthenticationFilter;
+
 @Configuration
 @EnableWebSecurity
 public class TokenSecurityConfig extends WebSecurityConfigurerAdapter
@@ -38,7 +39,7 @@ public class TokenSecurityConfig extends WebSecurityConfigurerAdapter
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		System.out.println("@@@@ configuring Rest security");
+		System.out.println("@@@@ configuring Token security");
 		auth.authenticationProvider(customAuthenticationProvider);
 	}
 	

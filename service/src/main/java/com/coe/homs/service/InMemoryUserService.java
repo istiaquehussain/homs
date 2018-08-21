@@ -41,7 +41,8 @@ public class InMemoryUserService implements UserService {
 
 	@Override
 	public Optional<User> findById(String id) {
-		return Optional.ofNullable(users.get(id));
+		return users.values().stream().filter(user->Objects.equals(id, user.getUid())).findFirst();
+		//return Optional.ofNullable(users.get(id));
 	}
 
 	@Override

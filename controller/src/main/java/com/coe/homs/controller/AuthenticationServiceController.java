@@ -1,10 +1,13 @@
 package com.coe.homs.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,6 +42,13 @@ public class AuthenticationServiceController {
 		responseHeaders.set("Authorization",id);
 		
 		return new ResponseEntity<String>(id,responseHeaders,HttpStatus.OK);
+	}
+	
+	@GetMapping("/users")
+	public ResponseEntity<?> getAllUsers() throws Exception
+	{
+		List<User> uses=userService.getUsers();
+		return new ResponseEntity<List<User>>(uses,HttpStatus.OK);
 	}
 	
 	
