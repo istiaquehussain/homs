@@ -23,7 +23,7 @@ public class UidPwSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		//System.out.println("@@@@ configuring security");
+		System.out.println("@@@@ configuring UidPwSecurityConfig security");
 		auth.authenticationProvider(customAuthenticationProvider);
 	}
 	@Override

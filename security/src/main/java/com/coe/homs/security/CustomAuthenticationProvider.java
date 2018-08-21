@@ -1,25 +1,20 @@
 package com.coe.homs.security;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.coe.homs.entity.User;
 import com.coe.homs.serviceapi.AuthenticationService;
 @Service("CustomAuthenticationProvider")
 public class CustomAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
 	@Autowired
+	@Qualifier("JwtTokenAuthenticationService")
 	AuthenticationService authenticationService;
 	@Override
 	protected void additionalAuthenticationChecks(UserDetails userDetails,

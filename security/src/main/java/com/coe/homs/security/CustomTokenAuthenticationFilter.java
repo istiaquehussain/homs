@@ -38,8 +38,11 @@ public class CustomTokenAuthenticationFilter extends AbstractAuthenticationProce
 		final Authentication auth = new UsernamePasswordAuthenticationToken("uid", "pwd");
 		*/
 		String token=request.getHeader("Authorization");
-		String id = authenticationService.findUserByKey(token).orElseThrow(()->new ServletException("Invalid Token !!")).getId();
-		final Authentication auth = new UsernamePasswordAuthenticationToken(id, id);
+		//System.out.println("@@ Token Value -> "+token );
+		String id = authenticationService.findUserByKey(token).orElseThrow(()->new ServletException("Invalid Token !!")).getUid();
+		//System.out.println("@@ Token id -> "+id );
+		final Authentication auth = new UsernamePasswordAuthenticationToken(token, token);
+		
 	    return getAuthenticationManager().authenticate(auth);
 	}
 	@Override

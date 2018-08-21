@@ -39,6 +39,7 @@ public class JwtTokenAuthenticationService implements AuthenticationService {
 
 	@Override
 	public Optional <User> findUserByKey(String key) {
+		//System.out.println("@valified Token "+TokenService.varifyToken(key));
 		return userService.findById(TokenService.varifyToken(key).get("userid"));
 		
 	}
