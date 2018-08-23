@@ -2,8 +2,10 @@ package com.coe.homs.entity;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,7 +27,11 @@ public class User implements UserDetails {
 	@JsonIgnore
 	private String pwd;
 	
+	@JsonIgnore
+	private List<Role> roles;
 	
+	@JsonIgnore
+	List<GrantedAuthority> authorities=new ArrayList<GrantedAuthority>();
 	
 	
 	public User(String id, String uid,String pwd) {
@@ -35,12 +41,18 @@ public class User implements UserDetails {
 		this.pwd = pwd;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", password=" + pwd + ", username=" + uid + "]";
-	}
+	
 	
 		
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", uid=" + uid + ", pwd=" + pwd + ", roles=" + roles + ", authorities=" + authorities
+				+ "]";
+	}
+
+
+
+
 	@JsonProperty("id")
 	public String getId() {
 		return id;
@@ -86,7 +98,9 @@ public class User implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return new ArrayList<>();
+		
+		
+		return authorities;
 	}
 	
 	@JsonProperty("acctActive")
@@ -113,5 +127,19 @@ public class User implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+		roles.forEach(role->authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getName())));
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 
 }
