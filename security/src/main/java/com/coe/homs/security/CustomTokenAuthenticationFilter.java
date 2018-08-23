@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
@@ -39,7 +40,7 @@ public class CustomTokenAuthenticationFilter extends AbstractAuthenticationProce
 		*/
 		String token=request.getHeader("Authorization");
 		//System.out.println("@@ Token Value -> "+token );
-		String id = authenticationService.findUserByKey(token).orElseThrow(()->new ServletException("Invalid Token !!")).getUid();
+		String id = authenticationService.findUserByKey(token).orElseThrow(()->new BadCredentialsException("Invalid Token !!")).getUid();
 		//System.out.println("@@ Token id -> "+id );
 		final Authentication auth = new UsernamePasswordAuthenticationToken(token, token);
 		
