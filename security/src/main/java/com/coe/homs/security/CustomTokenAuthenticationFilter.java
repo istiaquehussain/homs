@@ -20,7 +20,7 @@ import com.coe.homs.serviceapi.AuthenticationService;
 public class CustomTokenAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
 	@Autowired
-	@Qualifier("JwtTokenAuthenticationService")
+	@Qualifier("${app.service.AuthenticationService}")
 	AuthenticationService authenticationService ;
 	
 	public CustomTokenAuthenticationFilter(RequestMatcher requiresAuthenticationRequestMatcher) {

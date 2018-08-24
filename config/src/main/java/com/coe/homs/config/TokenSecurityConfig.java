@@ -39,7 +39,7 @@ public class TokenSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Qualifier("CustomAuthenticationProvider")
 	CustomAuthenticationProvider customAuthenticationProvider;
 	@Autowired
-	@Qualifier("InMemoryConfigurationService")
+	@Qualifier("${app.service.ConfigurationService}")
 	ConfigurationService configurationService;
 
 	@Override

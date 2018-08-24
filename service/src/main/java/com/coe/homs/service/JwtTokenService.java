@@ -21,14 +21,13 @@ import io.jsonwebtoken.impl.compression.GzipCompressionCodec;
 
 @Component("JwtTokenService")
 public class JwtTokenService implements Clock, TokenService {
-
-	@Value("${jwt.secret:defultsecret}")
+	@Value("${app.security.jwt.secret:defultsecret}")
 	String secretKey;
-	@Value("${jwt.issuer:defultissuer}")
+	@Value("${app.security.jwt.issuer:defultissuer}")
 	String issuer;
-	@Value("${jwt.expiration-sec:300}")
+	@Value("${app.security.jwt.expiration-sec:300}")
 	int expirationSec;
-	@Value("${jwt.clock-skew-sec:300}")
+	@Value("${app.security.jwt.clock-skew-sec:300}")
 	int clockSkewSec;
 
 	@Override
@@ -64,6 +63,7 @@ public class JwtTokenService implements Clock, TokenService {
 	}
 
 	private String genrateToken(Map<String, String> attributes, int expiresInSec) {
+		System.out.println("Ingenerated Token "+toString());
 		Claims claims = getClaim(expiresInSec);
 		claims.putAll(attributes);
 

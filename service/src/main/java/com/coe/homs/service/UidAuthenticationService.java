@@ -15,7 +15,7 @@ import com.coe.homs.serviceapi.UserService;
 public class UidAuthenticationService implements AuthenticationService {
 
 	@Autowired
-	@Qualifier("InMemoryUserService")
+	@Qualifier("${app.service.UserService}")
 	UserService userService;
 	
 	@Override

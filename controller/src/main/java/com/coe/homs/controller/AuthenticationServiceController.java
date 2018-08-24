@@ -22,11 +22,10 @@ import com.coe.homs.serviceapi.UserService;
 @RequestMapping("/public/auth")
 public class AuthenticationServiceController {
 	@Autowired
-	@Qualifier("InMemoryUserService")
+	@Qualifier("${app.service.UserService}")
 	UserService userService;
 	@Autowired
-	//@Qualifier("UIDAuthenticationService")
-	@Qualifier("JwtTokenAuthenticationService")
+	@Qualifier("${app.service.AuthenticationService}")
 	AuthenticationService authenticationService ;
 	
 	@PostMapping("/users")

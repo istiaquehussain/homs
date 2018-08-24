@@ -10,6 +10,12 @@
 	<packaging>pom</packaging>
 
 	<name>Homes</name>
+	<repositories>
+      <repository>
+	<id>JBoss repository</id>
+	<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+      </repository>
+    </repositories>
 
 	<modules>
 		<module>application</module>
@@ -22,5 +28,14 @@
 		<module>service</module>
 		<module>util</module>
 	</modules>
-
+	
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+<!-- mvn spring-boot:run-->
 </project>
