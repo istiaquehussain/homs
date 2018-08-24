@@ -21,7 +21,7 @@ import com.coe.homs.serviceapi.AuthenticationService;
 public class CustomAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
 	@Autowired
-	@Qualifier("JwtTokenAuthenticationService")
+	@Qualifier("${app.service.AuthenticationService}")
 	AuthenticationService authenticationService;
 	@Override
 	protected void additionalAuthenticationChecks(UserDetails userDetails,

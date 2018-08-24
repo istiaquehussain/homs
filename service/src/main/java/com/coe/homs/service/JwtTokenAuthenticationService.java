@@ -15,13 +15,12 @@ import com.coe.homs.serviceapi.UserService;
 import com.google.common.collect.ImmutableMap;
 @Service("JwtTokenAuthenticationService")
 public class JwtTokenAuthenticationService implements AuthenticationService {
-
 	@Autowired
-	@Qualifier("InMemoryUserService")
+	@Qualifier("${app.service.UserService}")
 	UserService userService;
 	
 	@Autowired
-	@Qualifier("JwtTokenService")
+	@Qualifier("${app.service.TokenService}")
 	TokenService TokenService;
 	
 	@Override

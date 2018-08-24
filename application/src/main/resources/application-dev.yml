@@ -1,0 +1,17 @@
+server:
+  port: 8080
+app:
+  security:
+    jwt:
+      secret: homes123
+      issuer: IssuerHomes 
+      expiration-sec: 120
+      clock-skew-sec: 120
+  service:
+     TokenService: "JwtTokenService" 
+     UserService: "InMemoryUserService"
+     ConfigurationService: "InMemoryConfigurationService" 
+     AuthenticationService: "JwtTokenAuthenticationService"
+   
+      
+    

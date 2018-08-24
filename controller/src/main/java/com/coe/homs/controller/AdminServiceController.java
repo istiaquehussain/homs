@@ -19,7 +19,7 @@ import com.coe.homs.util.CustomException;
 @RequestMapping("/admin")
 public class AdminServiceController {
 	@Autowired
-	@Qualifier("InMemoryUserService")
+	@Qualifier("${app.service.UserService}")
 	UserService userService;
 	
 	
