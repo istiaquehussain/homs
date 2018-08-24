@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.coe.homs.entity.Role;
@@ -15,7 +17,8 @@ import com.coe.homs.entity.User;
 import com.coe.homs.serviceapi.UserService;
 @Service("InMemoryUserService")
 public class InMemoryUserService implements UserService {
-
+	private static final Logger LOGGER = LogManager.getLogger(InMemoryUserService.class);
+	
 	private Map<String,User> users= new HashMap<String,User>();
 	private Map<String,Role> roles= new HashMap<String,Role>();
 	
@@ -58,14 +61,9 @@ public class InMemoryUserService implements UserService {
 		user4.setRoles(user4Roles);
 		users.put(id4,user4);
 		
-		System.out.println("@@@@@@@@@ Users and Role Initialized ");
 		
+		LOGGER.info("Users and Role Initialized ......");
 		
-		
-		
-		
-		System.out.println("@@@@@@@@@ Users Initialized "); 
-	
 	}
 	
 	@Override

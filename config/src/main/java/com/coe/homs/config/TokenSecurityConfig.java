@@ -44,7 +44,7 @@ public class TokenSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		System.out.println("@@@@ configuring Token security");
+		//System.out.println("@@@@ configuring Token security");
 		auth.authenticationProvider(customAuthenticationProvider);
 	}
 

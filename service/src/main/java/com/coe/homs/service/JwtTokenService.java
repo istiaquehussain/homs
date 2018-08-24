@@ -3,6 +3,8 @@ package com.coe.homs.service;
 import java.util.Date;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -21,6 +23,8 @@ import io.jsonwebtoken.impl.compression.GzipCompressionCodec;
 
 @Component("JwtTokenService")
 public class JwtTokenService implements Clock, TokenService {
+	private static final Logger LOGGER = LogManager.getLogger(JwtTokenService.class);
+	
 	@Value("${app.security.jwt.secret:defultsecret}")
 	String secretKey;
 	@Value("${app.security.jwt.issuer:defultissuer}")
@@ -63,7 +67,7 @@ public class JwtTokenService implements Clock, TokenService {
 	}
 
 	private String genrateToken(Map<String, String> attributes, int expiresInSec) {
-		System.out.println("Ingenerated Token "+toString());
+		LOGGER.info("Token genration configuration is -> "+toString());
 		Claims claims = getClaim(expiresInSec);
 		claims.putAll(attributes);
 
